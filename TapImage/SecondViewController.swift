@@ -13,10 +13,22 @@ class SecondViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var secondImage: UIImageView!
     @IBOutlet weak var secondTextField: UITextField!
     
+    var secondPhoto : UIImage! = nil
+    var photoName: String!
+    var photoCount: Int!
+
+    var  num: Int = 0
+
+    
     @IBAction func nextButton(sender: AnyObject) {
-        var  num:Int = photoCount
+          num = photoCount
+               if num < 3
+        {
+        
+        print("ffffffff\(num)")
     
         num += 1
+         print("update num \(num)")
         //secondImage.image = UIImage(contentsOfFile: Name[num])
         
          let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
@@ -24,6 +36,11 @@ class SecondViewController: UIViewController,UITextFieldDelegate {
        nextViewController.photoName = Name[num]
        nextViewController.photoCount = num
         self.navigationController?.pushViewController(nextViewController, animated: true)
+        }
+        else
+        {
+        print("Last indexxxxxxxxxxxxx \(num)")
+        }
 
 //{
 //    print("")
@@ -33,11 +50,37 @@ class SecondViewController: UIViewController,UITextFieldDelegate {
     @IBAction func backButton(sender: AnyObject)
     {
         
+        print("backkkkk")
+        num = photoCount
+        
+        if num > 0
+        {
+            
+            print("ffffffff\(num)")
+            
+            num -= 1
+            print("update num \(num)")
+            //secondImage.image = UIImage(contentsOfFile: Name[num])
+            
+            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+            let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("SecondViewController") as! SecondViewController
+            nextViewController.photoName = Name[num]
+            nextViewController.photoCount = num
+            self.navigationController?.pushViewController(nextViewController, animated: true)
+        }
+        else
+        {
+            print("Last indexxxxxxxxxxxxx \(num)")
+        }
+
+        
+        
+        
+        
     }
-    var secondPhoto : UIImage! = nil
-    var photoName: String!
-    var photoCount: Int!
-    override func viewDidLoad()
+    
+    
+       override func viewDidLoad()
     {
         super.viewDidLoad()
 //print("brooooo \(Name[photoCount])")
